@@ -10,31 +10,31 @@ public class Brain : MonoBehaviour
     void Start()
     {
         // (number of inputs, number of outputs, number of hidden layers, neurons per hidden layer, alpha)
-        ann = new ANN(2,1,1,2,0.8); 
+        ann = new ANN(2,1,1,2,0.01); 
 
         List<double> result;
 
-        for(int i = 0;i<10000;i++)
+        for(int i = 0;i<200000;i++)
         {
             sumSquareError = 0;
-            result = Train(1,1,1);
-            sumSquareError += Mathf.Pow((float)result[0] - 1,2);
-            result = Train(1,0,0);
+            result = Train(1,1,0);
             sumSquareError += Mathf.Pow((float)result[0] - 0,2);
-            result = Train(0,1,0);
-            sumSquareError += Mathf.Pow((float)result[0] - 0,2);
-            result = Train(0,0,1);
+            result = Train(1,0,1);
             sumSquareError += Mathf.Pow((float)result[0] - 1,2);
+            result = Train(0,1,1);
+            sumSquareError += Mathf.Pow((float)result[0] - 1,2);
+            result = Train(0,0,0);
+            sumSquareError += Mathf.Pow((float)result[0] - 0,2);
         }
         Debug.Log("SSE: " + sumSquareError);
 
-        result = Train(1,1,1);
+        result = Train(1,1,0);
         Debug.Log("1 1 " + result[0]);
-        result = Train(1,0,0);
+        result = Train(1,0,1);
         Debug.Log("1 0 " + result[0]);
-        result = Train(0,1,0);
+        result = Train(0,1,1);
         Debug.Log("0 1 " + result[0]);
-        result = Train(0,0,1);
+        result = Train(0,0,0);
         Debug.Log("0 0 " + result[0]);
     }
 
