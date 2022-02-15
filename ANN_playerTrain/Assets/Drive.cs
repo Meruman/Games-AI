@@ -7,7 +7,7 @@ public class Drive : MonoBehaviour
 {
      public float speed = 80.0f;
     public float rotationSpeed = 100.0f;
-    public float visibleDistance= 200.0f;
+    public float visibleDistance= 50.0f;
     List<string> collectedTrainingData = new List<string>();
     StreamWriter tdf;
 
@@ -70,7 +70,7 @@ public class Drive : MonoBehaviour
             lDist = 1 - Round(hit.distance/visibleDistance);
         }
         //r45
-        if(Physics.Raycast(transform.position, Quaternion.AngleAxis(45,Vector3.up) * this.transform.right, out hit, visibleDistance))
+        if(Physics.Raycast(transform.position, Quaternion.AngleAxis(-45,Vector3.up) * this.transform.right, out hit, visibleDistance))
         {
             r45Dist = 1 - Round(hit.distance/visibleDistance);
         }
